@@ -7,8 +7,16 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    /**
+     * @var int
+     * Pagination limit
+     */
     protected $limit = 3;
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * List of posts
+     */
     public function index()
     {
         $posts = Post::with('user')
@@ -16,5 +24,15 @@ class PostController extends Controller
                             ->published()
                             ->simplePaginate($this->limit);
         return view('blogs.index', compact('posts'));
+    }
+
+    /**
+     * @param Post $post
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * Show Post
+     */
+    public function show(Post $post)
+    {
+        return view('blogs.show', compact('post'));
     }
 }
