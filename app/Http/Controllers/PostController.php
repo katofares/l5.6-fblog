@@ -11,7 +11,10 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::with('user')->latestFirst()->simplePaginate($this->limit);
+        $posts = Post::with('user')
+                            ->latestFirst()
+                            ->published()
+                            ->simplePaginate($this->limit);
         return view('blogs.index', compact('posts'));
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -29,16 +30,16 @@ class Post extends Model
     }
 
     /**
-     * Use Carbon on templates
+     * Use Carbon for specific date field
      */
-    protected $dates = ['created_at', 'updated_at'];
+    protected $dates = ['published_at'];
 
     /**
      * Date Accessor
      */
     public function getDateAttribute()
     {
-        return $this->created_at->diffForHumans();
+        return $this->published_at->diffForHumans();
     }
 
     /**
@@ -49,6 +50,11 @@ class Post extends Model
     public function ScopeLatestFirst($query)
     {
         return $query->orderBy('created_at', 'desc');
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published_at',"<=", Carbon::now() );
     }
 
 }
