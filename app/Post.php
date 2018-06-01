@@ -27,4 +27,28 @@ class Post extends Model
             return $imageUrl;
         }
     }
+
+    /**
+     * Use Carbon on templates
+     */
+    protected $dates = ['created_at', 'updated_at'];
+
+    /**
+     * Date Accessor
+     */
+    public function getDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
+    /**
+     * Date Scope
+     * @param $query
+     * @return
+     */
+    public function ScopeLatestFirst($query)
+    {
+        return $query->orderBy('created_at', 'desc');
+    }
+
 }

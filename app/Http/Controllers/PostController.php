@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    protected $limit = 3;
+
     public function index()
     {
-        $posts = Post::with('user')->get();
+        $posts = Post::with('user')->latestFirst()->simplePaginate($this->limit);
         return view('blogs.index', compact('posts'));
     }
 }
