@@ -39,6 +39,7 @@ class PostsTableSeeder extends Seeder
               'created_at' =>$faker->dateTimeBetween('-6 days', '+1 days') ,
               'updated_at' =>$faker->dateTimeBetween('-4 days', '-2 day') ,
               'published_at' =>$faker->dateTimeBetween('-4 days', '+2 day') ,
+              'category_id' => rand(1, 5),
             ];
         }
 
