@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -19,12 +20,36 @@ class PostController extends Controller
      */
     public function index()
     {
+        /**
+         * Filter categories posts
+         */
+        $categories = Category::with(['posts'=> function($query){
+            $query->published();
+        }])->get();
         $posts = Post::with('user')
                             ->latestFirst()
                             ->published()
                             ->simplePaginate($this->limit);
-        return view('blogs.index', compact('posts'));
+        return view('blogs.index', compact('posts','categories'));
     }
+
+    public function category(Category $category)
+    {
+        /**
+         * Filter categories posts
+         */
+        $categories = Category::with(['posts' => function($query){
+            $query->published();
+        }])->get();
+        $posts = $category->posts()->with('user')
+            ->latestFirst()
+            ->published()
+            ->simplePaginate($this->limit);
+        return view('blogs.index', compact('posts','categories'));
+    }
+
+
+
 
     /**
      * @param Post $post

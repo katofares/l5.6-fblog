@@ -57,5 +57,12 @@ class Post extends Model
         return $query->where('published_at',"<=", Carbon::now() );
     }
 
+    /**
+     * Relation with category
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
 }
