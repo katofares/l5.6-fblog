@@ -2,37 +2,43 @@
 
 @section('content')
     <div class="col-md-8">
-        @foreach($posts as $post)
-        <article class="post-item">
-            @if($post->image_url)
-                <div class="post-item-image">
-                    <a href="{{ route('blogs.show', $post->slug) }}">
-                        <img src="{{ $post->image_url }}" alt="">
-                    </a>
-                </div>
-            @endif
-            <div class="post-item-body">
-                <div class="padding-10">
-                    <h2><a href="{{ route('blogs.show', $post->slug) }}">{{ $post->title }}</a></h2>
-                    <p>{!! $post->excerpt !!}</p>
-                </div>
+        @if($posts->count() > 0)
+            @foreach($posts as $post)
+                <article class="post-item">
+                    @if($post->image_url)
+                        <div class="post-item-image">
+                            <a href="{{ route('blogs.show', $post->slug) }}">
+                                <img src="{{ $post->image_url }}" alt="">
+                            </a>
+                        </div>
+                    @endif
+                    <div class="post-item-body">
+                        <div class="padding-10">
+                            <h2><a href="{{ route('blogs.show', $post->slug) }}">{{ $post->title }}</a></h2>
+                            <p>{!! $post->excerpt !!}</p>
+                        </div>
 
-                <div class="post-meta padding-10 clearfix">
-                    <div class="pull-left">
-                        <ul class="post-meta-group">
-                            <li><i class="fa fa-user"></i><a href="#"> {{ $post->user->name }}</a></li>
-                            <li><i class="fa fa-clock-o"></i><time>{{$post->date}}</time></li>
-                            <li><i class="fa fa-tags"></i><a href="#"> Blog</a></li>
-                            <li><i class="fa fa-comments"></i><a href="#">4 Comments</a></li>
-                        </ul>
+                        <div class="post-meta padding-10 clearfix">
+                            <div class="pull-left">
+                                <ul class="post-meta-group">
+                                    <li><i class="fa fa-user"></i><a href="#"> {{ $post->user->name }}</a></li>
+                                    <li><i class="fa fa-clock-o"></i><time>{{$post->date}}</time></li>
+                                    <li><i class="fa fa-folder"></i><a href="{{ route('category', $post->category->slug) }}">{{ $post->category->name }}</a></li>
+                                    <li><i class="fa fa-comments"></i><a href="#">4 Comments</a></li>
+                                </ul>
+                            </div>
+                            <div class="pull-right">
+                                <a href="{{ route('blogs.show', $post->slug) }}">Continue Reading &raquo;</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="pull-right">
-                        <a href="{{ route('blogs.show', $post->slug) }}">Continue Reading &raquo;</a>
-                    </div>
-                </div>
+                </article>
+            @endforeach
+         @else
+            <div class="alert alert-warning">
+                <h2>There are no Posts !!!!</h2>
             </div>
-        </article>
-        @endforeach
+         @endif
         {{ $posts->links() }}
         {{--<nav>--}}
             {{--<ul class="pager">--}}

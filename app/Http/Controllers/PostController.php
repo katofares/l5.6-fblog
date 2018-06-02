@@ -20,32 +20,21 @@ class PostController extends Controller
      */
     public function index()
     {
-        /**
-         * Filter categories posts
-         */
-        $categories = Category::with(['posts'=> function($query){
-            $query->published();
-        }])->get();
         $posts = Post::with('user')
                             ->latestFirst()
                             ->published()
                             ->simplePaginate($this->limit);
-        return view('blogs.index', compact('posts','categories'));
+        return view('blogs.index', compact('posts'));
     }
 
     public function category(Category $category)
     {
-        /**
-         * Filter categories posts
-         */
-        $categories = Category::with(['posts' => function($query){
-            $query->published();
-        }])->get();
-        $posts = $category->posts()->with('user')
+        $posts = $category->posts()
+            ->with('user')
             ->latestFirst()
             ->published()
             ->simplePaginate($this->limit);
-        return view('blogs.index', compact('posts','categories'));
+        return view('blogs.index', compact('posts'));
     }
 
 
