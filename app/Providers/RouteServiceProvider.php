@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Post;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -20,12 +21,15 @@ class RouteServiceProvider extends ServiceProvider
      * Define your route model bindings, pattern filters, etc.
      *
      * @return void
+     * Use slug instead of id in the url(SEO friendly url)
+     * This is because of Route Model Binding(refer to route and controller)
      */
     public function boot()
     {
-        //
-
         parent::boot();
+        Route::bind('post', function ($slug) {
+            return Post::published()->where('slug', $slug)->first();
+        });
     }
 
     /**

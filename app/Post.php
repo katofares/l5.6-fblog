@@ -57,18 +57,5 @@ class Post extends Model
         return $query->where('published_at',"<=", Carbon::now() );
     }
 
-    /**
-     *Use slug instead of id in the url(SEO friendly url)
-     * This is because of Route Model Binding(refer to route and controller)
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
-
-
-
-
 
 }
