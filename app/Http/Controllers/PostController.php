@@ -47,6 +47,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        // Increment view_count column when user visit post
+        $post->increment('view_count');
+
         return view('blogs.show', compact('post'));
     }
 }

@@ -30,6 +30,25 @@ class Post extends Model
     }
 
     /**
+     * Image url Accessor
+     */
+    public function getImageThumbAttribute()
+    {
+        $imageUrl = "";
+        if(!is_null($this->image)){
+            $extension = substr(strrchr($this->image, '.'), 1);
+            $thumbnail = str_replace(".{$extension}", "_thumb.{$extension}", $this->image);
+            $imagePath = public_path().'/img/'. $thumbnail;
+            if(file_exists($imagePath)){
+                $imageUrl = asset('/img/'. $thumbnail);
+            }
+            return $imageUrl;
+        }
+    }
+
+
+
+    /**
      * Use Carbon for specific date field
      */
     protected $dates = ['published_at'];
@@ -64,5 +83,16 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    /**
+     * @param $query
+     * @return mixed
+     * Popular posts
+     */
+    public function scopePopular($query)
+    {
+        return $query->orderBy('view_count', 'desc');
+    }
+
 
 }
