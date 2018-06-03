@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory;
 
 class UsersTableSeeder extends Seeder
 {
@@ -12,6 +13,9 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        // $faker init
+        $faker = Factory::create();
+
         // Disable  foreign key
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         // truncate users table and start fresh
@@ -22,16 +26,19 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Jhon Doe',
                 'email' => 'jhondoe@gmail.com',
                 'password' => bcrypt('password'),
+                'bio' => $faker->text(rand(200, 300)),
             ],
             [
                 'name' => 'Jane Doe',
                 'email' => 'janedoe@gmail.com',
                 'password' => bcrypt('password'),
+                'bio' => $faker->text(rand(200, 300)),
             ],
             [
                 'name' => 'Fares Kato',
                 'email' => 'fareskato@gmail.com',
                 'password' => bcrypt('password'),
+                'bio' => $faker->text(rand(200, 300)),
             ],
         ]);
     }

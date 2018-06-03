@@ -8,15 +8,19 @@
                     <img src="{{ $post->image_url }}" alt="">
                 </div>
             @endif
+
+            {{-- $author variable --}}
+             @php($author = $post->user)
+
             <div class="post-item-body">
                 <div class="padding-10">
                     <h1>{{ $post->title }}</h1>
 
                     <div class="post-meta no-border">
                         <ul class="post-meta-group">
-                            <li><i class="fa fa-user"></i><a href="#"> {{ $post->user->name }}</a></li>
+                            <li><i class="fa fa-user"></i>{{ $author->name }}</li>
                             <li><i class="fa fa-clock-o"></i><time>{{ $post->date }}</time></li>
-                            <li><i class="fa fa-tags"></i><a href="#"> Blog</a></li>
+                            <li><i class="fa fa-folder"></i><a href="{{ route('category', $post->category->slug) }}"> {{ $post->category->name }}</a></li>
                             <li><i class="fa fa-comments"></i><a href="#">4 Comments</a></li>
                         </ul>
                     </div>
@@ -28,19 +32,16 @@
         <article class="post-author padding-10">
             <div class="media">
                 <div class="media-left">
-                    <a href="#">
-                        <img alt="Author 1" src="/img/author.jpg" class="media-object">
-                    </a>
+                    <img alt="{{ $author->name }}" src="{{ $author->gravatar }}" class="media-object">
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading"><a href="#">{{ $post->user->name }}</a></h4>
+                    <h4 class="media-heading">{{ $author->name }}</h4>
                     <div class="post-author-count">
-                        <a href="#">
-                            <i class="fa fa-clone"></i>
-                            90 posts
-                        </a>
+                        <i class="fa fa-clone"></i>
+                        @php($countPosts = $author->posts->count())
+                         {{ $countPosts }}{{ str_plural('post', $countPosts) }}
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ad aut sunt cum, mollitia excepturi neque sint magnam minus aliquam, voluptatem, labore quis praesentium eum quae dolorum temporibus consequuntur! Non.</p>
+                    <p>{!! $author->bio !!}</p>
                 </div>
             </div>
         </article>
