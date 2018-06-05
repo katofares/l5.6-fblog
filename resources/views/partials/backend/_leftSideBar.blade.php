@@ -16,10 +16,10 @@
                 </li>
                 <h3 class="menu-title">Posts</h3><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-folder text-success"></i>Components</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-folder text-success"></i>Posts</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-list-ul"></i><a href="ui-buttons.html">All posts</a></li>
-                        <li><i class="fa fa-plus-circle"></i><a href="ui-buttons.html">Create post</a></li>
+                        <li><i class="fa fa-list-ul"></i><a href="{{ route('backend.blogs.index') }}">All posts</a></li>
+                        <li><i class="fa fa-plus-circle"></i><a href="{{ route('backend.blogs.create') }}">Create post</a></li>
                         <li><i class="fa fa-trash-o"></i><a href="ui-buttons.html">Trashed posts</a></li>
                     </ul>
                 </li>

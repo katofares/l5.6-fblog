@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostsController extends BackendController
 {
+    // Pagination limit
+    const LIMIT = 10;
+
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource.+-
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $postsCount = Post::count();
+        $posts = Post::latest()->with('category', 'user')->paginate(self::LIMIT);
+        return view('backend.posts.index', compact('posts', 'postsCount'));
     }
 
     /**
@@ -23,7 +29,7 @@ class PostsController extends BackendController
      */
     public function create()
     {
-        //
+        return view('backend.posts.create');
     }
 
     /**

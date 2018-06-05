@@ -1,5 +1,10 @@
 @extends('layouts.backend')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('home') }}
+@endsection
+
+
 @section('content')
     @php($currentUser = auth()->user())
 <div class="row">
@@ -82,7 +87,7 @@
                 <div class="card-body">
                     <p class="text-muted m-b-15">It seems U didn't create any posts may be this is your first time here
                     so please <br>start by clicking the button <i class="ti-hand-point-down text-primary"></i></p>
-                    <p><a href="" class="btn btn-lg btn-primary">Create Your first post</a></p>
+                    <p><a href="{{ route('backend.blogs.create') }}" class="btn btn-lg btn-primary">Create Your first post</a></p>
                 </div>
             </div>
         </div>

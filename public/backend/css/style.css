@@ -1104,7 +1104,7 @@ body.open .navbar .navbar-brand.hidden {
     .right-panel .page-header .breadcrumb > li + li:before {
       padding: 0 5px;
       color: #ccc;
-      content: "/\00a0"; }
+      content: ">\00a0"; }
 
 .right-panel header.header {
   background: #fff;

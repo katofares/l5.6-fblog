@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('backend/css/themify-icons.css') }}">
     {{--<link rel="stylesheet" href="{{ asset('backend/css/flag-icon.min.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('backend/css/cs-skin-elastic.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/lib/datatable/dataTables.bootstrap.min.css') }}">
     <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
     <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
 
@@ -32,7 +33,9 @@
     <!-- Header-->
 @include('partials.backend._header')
     <!-- Breadcrumbs-->
- @include('partials.backend._breadcrumbs')
+ <div class="breadcrumbs">
+    @yield('breadcrumbs')
+ </div>
     <div class="content mt-3">
     @yield('content')
 

@@ -77,6 +77,16 @@ class Post extends Model
     }
 
     /**
+     * Format posts created_at date
+     */
+
+    public function formattedDate($showTime = false){
+        $dateFormat = ($showTime == false) ?  'd/m/y' : 'd/m/y H:i:s';
+        return $this->created_at->format($dateFormat);
+    }
+
+
+    /**
      * Relation with category
      */
     public function category()
@@ -94,5 +104,18 @@ class Post extends Model
         return $query->orderBy('view_count', 'desc');
     }
 
+    /**
+     * Status Lable
+     */
+    public function showStatus()
+    {
+        if($this->published_at == null){
+            return "<span class=\"badge badge-warning\">Draft</span>" ;
+        } elseif ($this->published_at && $this->published_at > Carbon::now() ){
+            return "<span class=\"badge badge-info\">Scheduled</span>" ;
+        } else {
+            return "<span class=\"badge badge-success\">Published</span>" ;
+        }
+    }
 
 }
