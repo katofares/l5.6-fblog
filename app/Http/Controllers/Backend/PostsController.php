@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Category;
+use App\Http\Requests\PostsFormRequest;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -25,22 +27,25 @@ class PostsController extends BackendController
     /**
      * Show the form for creating a new resource.
      *
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Post $post)
     {
-        return view('backend.posts.create');
+        $categories = Category::latest()->get();
+        return view('backend.posts.create', compact('post', 'categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param Post $post
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(PostsFormRequest $request, Post $post)
     {
-        //
+        return $request->user()->posts()->create($request->all()) ? redirect()->route('backend.blogs.index')->with('success', 'Post has been successfully created') : back();
     }
 
     /**

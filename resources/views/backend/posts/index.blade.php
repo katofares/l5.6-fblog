@@ -15,18 +15,16 @@
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title">All posts</strong>
+                        <a href="{{ route('backend.blogs.create') }}" class="btn btn-primary pull-right">
+                            <i class="fa fa-plus"></i>
+                            Create New Post
+                        </a>
                     </div>
                     <div class="card-body">
                         <div id="bootstrap-data-table_wrapper"
                              class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                             <div class="row">
-                                <div class="col-sm-12 col-md-6">
-                                    <a href="{{ route('backend.blogs.create') }}" class="btn btn-primary">
-                                        <i class="fa fa-plus"></i>
-                                        Create New Post
-                                    </a>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
+                                <div class="col-sm-12 col-md-7 offset-sm-5">
                                     <div id="bootstrap-data-table_filter" class="dataTables_filter"><label>Search:<input
                                                     type="search" class="form-control form-control-sm" placeholder=""
                                                     aria-controls="bootstrap-data-table"></label></div>

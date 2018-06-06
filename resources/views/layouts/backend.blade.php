@@ -36,6 +36,8 @@
  <div class="breadcrumbs">
     @yield('breadcrumbs')
  </div>
+
+ @include('partials.backend._messages')
     <div class="content mt-3">
     @yield('content')
 

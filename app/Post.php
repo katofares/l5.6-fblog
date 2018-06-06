@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    protected $fillable = ['title', 'slug', 'body', 'excerpt', 'user_id', 'category_id', 'published_at'];
+
     // Relation with users
 
     public function user()
@@ -117,5 +119,12 @@ class Post extends Model
             return "<span class=\"badge badge-success\">Published</span>" ;
         }
     }
-
+    
+    /** 
+     *published_at
+     */
+    public function setPublishedAtAttribute($value)
+    {
+        $this->attributes['published_at'] = $value ?: NULL;
+    }
 }
