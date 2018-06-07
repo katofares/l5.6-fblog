@@ -6,11 +6,22 @@ use App\Category;
 use App\Http\Requests\PostsFormRequest;
 use App\Post;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class PostsController extends BackendController
 {
+    // Imaged upload path
+    protected $uploadPath;
+
     // Pagination limit
     const LIMIT = 10;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->uploadPath = public_path(config('myConfig.image.directory'));
+    }
+
 
     /**
      * Display a listing of the resource.+-
@@ -45,7 +56,34 @@ class PostsController extends BackendController
      */
     public function store(PostsFormRequest $request, Post $post)
     {
-        return $request->user()->posts()->create($request->all()) ? redirect()->route('backend.blogs.index')->with('success', 'Post has been successfully created') : back();
+        $data = $this->handleRequest($request);
+        return $request->user()->posts()->create($data) ? redirect()->route('backend.blogs.index')->with('success', 'Post has been successfully created') : back();
+    }
+
+    private function handleRequest($request){
+        $data = $request->all();
+        if($request->hasFile('image')){
+            // get the image
+            $image = $request->file('image');
+            $dest = $this->uploadPath;
+            $fileName = rand() . $image->getClientOriginalName();
+            $uploadedImage = $image->move($dest, $fileName);
+
+            // create thumbnail
+            if($uploadedImage){
+                $width = config('myConfig.image.thumbnail.width');
+                $height = config('myConfig.image.thumbnail.height');
+                $extension = $image->getClientOriginalExtension();
+                $thumbnail = str_replace(".{$extension}", "_thumb.{$extension}", $fileName);
+                // Move the image to the server
+
+                Image::make($dest . '/'. $fileName)->resize($width, $height)->save($dest .'/'.$thumbnail);
+            }
+            // Save the image in the database
+            $data['image'] = $fileName;
+        }
+        return $data;
+
     }
 
     /**

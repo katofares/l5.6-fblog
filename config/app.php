@@ -161,6 +161,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
 
+        // 3rd  packages
+        Intervention\Image\ImageServiceProvider::class
+
     ],
 
     /*
@@ -209,6 +212,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        // 3rd packages
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

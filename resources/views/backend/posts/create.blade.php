@@ -15,7 +15,7 @@
                 <a href="{{ route('backend.blogs.index') }}" class="btn btn-secondary pull-right">Back</a>
             </div>
             <div class="card-body card-block">
-                <form action="{{ route('backend.blogs.store') }}" method="POST" class="form-horizontal">
+                <form action="{{ route('backend.blogs.store') }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
                     @csrf
                     <div class="row form-group">
                         <div class="col col-md-2"><label for="title" class=" form-control-label">Title</label></div>
@@ -60,11 +60,16 @@
                             @endforeach
                         </select>
                     </div>
-                    {{--<div class="">--}}
+                    <div class="form-group">
+                        <label for="image" class="form-control-label">Featured image:</label>
+                        <div class="input-group">
+                            <input type="file" name="image" class="from-control">
+                            @if ($errors->has('image'))<span class="invalid-feedback">{{ $errors->first('image') }}</span> @endif
+                        </div>
+                    </div>
                         <button type="submit" class="btn btn-primary btn-block">
                             <i class="fa fa-dot-circle-o"></i> Submit
                         </button>
-                    {{--</div>--}}
 
                 </form>
             </div>
