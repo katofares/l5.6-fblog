@@ -1,9 +1,9 @@
 @extends('layouts.backend')
 
-@section('title', 'Posts | New')
+@section('title', 'Categories | New')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('backend.blogs.create') }}
+    {{ Breadcrumbs::render('backend.categories.create') }}
 @endsection
 
 
@@ -12,13 +12,12 @@
         <div class="card">
             <div class="card-header">
                 <strong>{{ $title }}</strong>
-                <a href="{{ route('backend.blogs.index') }}" class="btn btn-secondary pull-right">All Posts</a>
+                <a href="{{ route('backend.categories.index') }}" class="btn btn-secondary pull-right">All Categories</a>
             </div>
         <div class="card-body">
-        <form action="{{ route('backend.blogs.store') }}" method="POST" class="form-horizontal"
-              enctype="multipart/form-data">
+        <form action="{{ route('backend.categories.store') }}" method="POST" class="form-horizontal">
             @csrf
-            @include('backend.posts.form')
+            @include('backend.categories.form')
                     <button type="submit" class="btn btn-primary btn-block">
                         <i class="fa fa-dot-circle-o"></i> Create
                     </button>

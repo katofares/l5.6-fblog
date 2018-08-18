@@ -16,5 +16,6 @@ return [
             'width' => 250,
             'height' => 170,
         ]
-    ]
+    ],
+    'uncategorized_category_id' => 1
 ];

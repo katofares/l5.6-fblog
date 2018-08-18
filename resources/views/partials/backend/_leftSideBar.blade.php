@@ -20,10 +20,17 @@
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="fa fa-list-ul"></i><a href="{{ route('backend.blogs.index') }}">All posts</a></li>
                         <li><i class="fa fa-plus-circle"></i><a href="{{ route('backend.blogs.create') }}">Create post</a></li>
-                        <li><i class="fa fa-trash-o"></i><a href="ui-buttons.html">Trashed posts</a></li>
+                        <li><i class="fa fa-trash-o"></i><a href="{{route('backend.blogs.trash')}}">Trashed posts</a></li>
                     </ul>
                 </li>
-
+                <h3 class="menu-title">Categories</h3><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-folder text-success"></i>Categories</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-list-ul"></i><a href="{{ route('backend.categories.index') }}">All categories</a></li>
+                        <li><i class="fa fa-plus-circle"></i><a href="{{ route('backend.categories.create') }}">Create category</a></li>
+                    </ul>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

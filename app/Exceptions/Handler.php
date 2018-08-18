@@ -3,7 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Route;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +48,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // protect uncategorized category from delete and redirect back
+        if ($exception instanceof AuthorizationException && Route::currentRouteName() == 'backend.categories.destroy' ) {
+            return redirect()->back()->with('alert', 'You can not delete this category , it is default category');
+        }
+
         return parent::render($request, $exception);
     }
 }

@@ -13,6 +13,9 @@ use App\Http\Controllers\Controller;
 
 class BackendController extends Controller
 {
+
+    // Pagination limit
+    const LIMIT = 10;
     /**
      * Create a new controller instance.
      *

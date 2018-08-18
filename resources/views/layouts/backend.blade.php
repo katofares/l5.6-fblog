@@ -17,10 +17,10 @@
     <link rel="stylesheet" href="{{ asset('backend/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/lib/datatable/dataTables.bootstrap.min.css') }}">
     <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
-    <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
-
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0/css/tempusdominus-bootstrap-4.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
 
 </head>
 <body>
@@ -48,6 +48,11 @@
 
 <script src="{{ asset('backend/js/vendor/jquery-2.1.4.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0/js/tempusdominus-bootstrap-4.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+
+
 <script src="{{ asset('backend/js/plugins.js') }}"></script>
 <script src="{{ asset('backend/js/main.js') }}"></script>
 
@@ -56,6 +61,15 @@
 <script src="{{ asset('backend/js/dashboard.js') }}"></script>
 {{--<script src="{{ asset('backend/js/widgets.js') }}"></script>--}}
 
-
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery('#datetimepicker').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
+            icons:{clear: 'far fa-trash'},
+            showClear: true,
+            local: 'ru'
+        });
+    });
+</script>
 </body>
 </html>

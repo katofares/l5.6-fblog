@@ -4,9 +4,15 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    /**
+     * Soft delete
+     */
+    use SoftDeletes;
+
     protected $fillable = ['title', 'slug', 'body', 'excerpt', 'user_id', 'category_id', 'published_at', 'image'];
 
     // Relation with users
@@ -54,8 +60,9 @@ class Post extends Model
 
     /**
      * Use Carbon for specific date field
+     * activate soft delete
      */
-    protected $dates = ['published_at'];
+    protected $dates = ['published_at', 'deleted_at'];
 
     /**
      * Date Accessor

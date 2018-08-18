@@ -162,7 +162,7 @@ return [
         App\Providers\ComposerServiceProvider::class,
 
         // 3rd  packages
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 

@@ -23,13 +23,18 @@ class PostsFormRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'title' => 'required|unique:posts|min:4',
-            'slug' => 'required|unique:posts|min:3',
-            'body' => 'required|min:5',
-            'category_id' => 'required',
-            'published_at' => 'nullable|date_format:Y-m-d H:i:s',
-            'image' => 'mimes:jpg,png,jpeg,gif'
-        ];
+        $rules =  [
+        'title' => 'required|unique:posts|min:4',
+        'body' => 'required|min:5',
+        'category_id' => 'required',
+        'published_at' => 'nullable|date_format:Y-m-d H:i:s',
+        'image' => 'mimes:jpg,png,jpeg,gif'
+    ];
+        switch($this->method()){
+            case 'PUT';
+            case 'PATCH';
+            $rules['title'] = 'required|min:4';
+        }
+        return $rules;
     }
 }
