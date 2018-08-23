@@ -23,6 +23,12 @@ class UsersTableSeeder extends Seeder
         // Insert three users
         DB::table('users')->insert([
             [
+                'name' => 'Fares Kato',
+                'email' => 'fareskato@gmail.com',
+                'password' => bcrypt('password'),
+                'bio' => $faker->text(rand(200, 300)),
+            ],
+            [
                 'name' => 'Jhon Doe',
                 'email' => 'jhondoe@gmail.com',
                 'password' => bcrypt('password'),
@@ -34,12 +40,7 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('password'),
                 'bio' => $faker->text(rand(200, 300)),
             ],
-            [
-                'name' => 'Fares Kato',
-                'email' => 'fareskato@gmail.com',
-                'password' => bcrypt('password'),
-                'bio' => $faker->text(rand(200, 300)),
-            ],
+
         ]);
     }
 }

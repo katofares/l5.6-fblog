@@ -163,6 +163,7 @@ return [
 
         // 3rd  packages
         Intervention\Image\ImageServiceProvider::class,
+        Laratrust\LaratrustServiceProvider::class
 
     ],
 
@@ -214,6 +215,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         // 3rd packages
         'Image' => Intervention\Image\Facades\Image::class,
+        'Laratrust'   => Laratrust\LaratrustFacade::class,
 
     ],
 
